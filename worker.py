@@ -35,19 +35,25 @@ class Worker():
         self.token = self.get_token
 
 
-    def CC_Calc(self, url):
-        blob_url = raw_url.split('|')[0]
-        file_name = raw_url.split('|')[1]
+    def CC_Calculator(self, blob_url):
+        url = blob_url.split('|')[0]
+        file_name = blob_url.split('|')[1]
 
         payload = {'access_token': self.token}
         header_s = {'Accept': 'application/vnd.github.v3.raw'}
         
         x = self.is_py(file_name)
+
         if x == True:
 
-            resp = requests.get(blob_url, params = headers[0], headers=header_s)
-            path = file_name
+            resp = requests.get(blob_url, params = payload, headers=header_s)
 
+            current_time = time.clock()
+            current_time = str(time)
+            current_time = current_time.split('.')[1]
+            SHA = url.split('/blobs/')[1]
+
+            path = SHA + current_time + '.py'
             with open(path, 'wb') as tf:
                 tf.write(resp.text)
             tf.close()
@@ -67,16 +73,19 @@ class Worker():
                 return 0
 
     def do_work(self):
+
+        cc_file = self.CC_Calculator(self.blob_url)
+        self.cc_total += cc_file
+        
         self.blob_url = requests.get(self.master_url).json()
         while self.blob_url != "done":
             file_cc = self.CC_calc(self.blob_url)
-            self.total_cc += file_cc
+            self.cc_total += cc_file
             self.blob_url = requests.get(self.master_url).json
             #----------need to tidy this loop----#
 
-        requests.put(self.manager_url, data={'cc': self.total_cc})
-
-        
+        requests.put(self.master_url, data={'CC': self.cc_total})
+ 
             
 
     def get_token(self):
