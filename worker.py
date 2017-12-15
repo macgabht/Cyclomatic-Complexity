@@ -16,7 +16,7 @@ import shutil
 
 class Worker():
 
-    master_url = 'http://localhost:5000/'
+    master_url = 'http://localhost:22222/'
     cc_total = 0
 
      cc_config = Config(
@@ -80,7 +80,7 @@ class Worker():
             
 
     def get_token(self):
-        with open('github-token.txt', 'r') as tf:
+        with open('git-token.txt', 'r') as tf:
             return token = tf.read()
         
     def is_py(self, file_name):

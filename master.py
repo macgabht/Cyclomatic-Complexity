@@ -89,12 +89,16 @@ class Master(Resource):
         
 def main():
     
-    git_url = 'https://api.github.com/repos/macgabht/Cyclomatic-Complexity/commits'
+    git_url = 'https://api.github.com/repos/macgabht/Distributed-File-System/commits'
     tree_urls = get_tree_urls(github_url)      # get the list of tree URL's from the project's commits
-    get_blob_url_list(git_url, tree_urls)    # get blob URLs of each tree's 
-    app.run(host='localhost', port=5000, debug=False)
+    get_blob_list(git_url, tree_urls)    # get blob URLs of each tree's 
+    t0 = time.clock()
+    app.run(host='localhost', port=22222, debug=False)
+    t1 = time.clock()
 
-
+    alpha = t1 - t0
+    print('Time taken: {0:0.2f}s'.format(alpha))
+    with open
 api.add_resource(Master, '/')
 
 
