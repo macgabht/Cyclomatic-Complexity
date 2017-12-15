@@ -22,3 +22,7 @@ The idea here is that a single manager distributes files from a given github rep
 The master uses a Flask server to distribute the work. It uses requests to obtain a git url to the commits a repository we hard code in. From this url, the idea is to filter out the file trees for each git commit. We then parse out the blob urls for each file within the tree before sending these blobs to be worked on.
 
 The worker upon reception of the blob url, separates the url from the file name. After separating the file name from the blob a quick check whether it is a python file or not is done. It then passes these file names to a temporary file before the CCharvester module calculates the complexity. These values are then passed back to the master who calculates the CC average from there.
+
+
+DISCLAIMER
+I have been having issues in my compilation of this project. I believe they stem from the github url being in the incorrect format
