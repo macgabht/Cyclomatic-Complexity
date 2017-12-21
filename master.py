@@ -9,7 +9,7 @@ import sys
 cc_total = 0
 blobs_list = deque()
 new_cc = 0
-total_workers = sys.argv[1]
+total_workers = 8
 blobs_length = 0
 cc_count = 0
 
