@@ -13,6 +13,8 @@ total_workers = 8
 blobs_length = 0
 cc_count = 0
 
+time0 = time.clock()
+time1 = time.clock()
 
 app = Flask(__name__)
 api = Api(app)
