@@ -32,7 +32,7 @@ class Master(Resource):
 
     def put(self):
         global time0
-        global time 1
+        global time1
         global CC_average
         global cc_total
         global cc_count
@@ -95,8 +95,8 @@ class Master(Resource):
 def main():
     
     git_url = 'https://api.github.com/repos/macgabht/Distributed-File-System/commits'
-    tree_urls = get_tree_urls(github_url)      # get the list of tree URL's from the project's commits
-    get_blob_list(git_url, tree_urls)    # get blob URLs of each tree's 
+    tree_urls = get_tree_urls(github_url)      # tree URL's from the project's commits
+    get_blob_list(git_url, tree_urls)    # get blob URLs of each trees
     
     app.run(host='localhost', port=22222, debug=False)
     time1 = time.clock()
